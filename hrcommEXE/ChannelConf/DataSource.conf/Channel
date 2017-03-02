@@ -1,0 +1,8 @@
+<Channel>
+	<PortNum>
+		1
+	</PortNum>
+	<Protocal>
+		DataSource
+	</Protocal>
+</Channel>
