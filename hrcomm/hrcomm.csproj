@@ -79,19 +79,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Channel\Channel.csproj">
+      <Project>{5bbe9d9f-c377-4478-82d5-b8db48b99405}</Project>
+      <Name>Channel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InterfaceDll\InterfaceDll.csproj">
       <Project>{5433f602-8619-4e7c-a3f2-182c7f5c45db}</Project>
       <Name>InterfaceDll</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tools\Tools.csproj">
-      <Project>{67870c6b-1add-49ad-a376-9b1dc0e28f58}</Project>
-      <Name>Tools</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName)" "$(SolutionDir)hrcomm可执行程序\bin"
-copy "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)hrcomm可执行程序\PrivateConf"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)hrcommEXE\bin"
+copy /y "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)hrcommEXE\PrivateConf"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

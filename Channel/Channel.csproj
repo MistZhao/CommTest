@@ -31,7 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -40,12 +42,17 @@
   <ItemGroup>
     <Compile Include="Channel.cs" />
     <Compile Include="ChannelFactory.cs" />
+    <Compile Include="ConfOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterfaceDll\InterfaceDll.csproj">
       <Project>{5433f602-8619-4e7c-a3f2-182c7f5c45db}</Project>
       <Name>InterfaceDll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\Tools.csproj">
+      <Project>{67870c6b-1add-49ad-a376-9b1dc0e28f58}</Project>
+      <Name>Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +62,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)hrcomm可执行程序\PrivateConf"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetDir)$(TargetFileName).config" "$(SolutionDir)hrcommEXE\PrivateConf"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
