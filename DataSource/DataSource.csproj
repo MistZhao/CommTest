@@ -42,6 +42,12 @@
     <Compile Include="DataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InterfaceDll\InterfaceDll.csproj">
+      <Project>{5433f602-8619-4e7c-a3f2-182c7f5c45db}</Project>
+      <Name>InterfaceDll</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetDir)$(TargetFileName)" "$(SolutionDir)hrcommEXE\DLLs"</PostBuildEvent>
