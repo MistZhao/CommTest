@@ -27,6 +27,11 @@ namespace Channel
             m_objProtocal = objProtocal;
         }
 
+        public IProtocal GetProtocal()
+        {
+            return m_objProtocal;
+        }
+
         public List<ICommType> GetCommTypes()
         {
             return m_objCommTypes;

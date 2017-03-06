@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using InterfaceDll;
 
-namespace DataSource
+namespace upPlugin104
 {
-    public class DataSource:AbstractDataSource
+    class upPlugin104 : AbstractIEC104
     {
         public override Queue<string> SendMsg()
         {

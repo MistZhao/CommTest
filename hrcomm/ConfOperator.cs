@@ -24,5 +24,11 @@ namespace hrcomm
             m_strConfPath = strConfPath;
             AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", strConfPath);
         }
+
+        public static string GetPath(string strPathConf)
+        {
+            string strPath = Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.LastIndexOf('\\')) + "\\" + strPathConf;
+            return strPath;
+        }
     }
 }

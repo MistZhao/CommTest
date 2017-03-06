@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using InterfaceDll;
 using Tools;
@@ -17,7 +18,11 @@ namespace Channel
 
             Channel objChannel = new Channel(strChannelName);
             string strProtocalName = GetProtocalName(strChannelName);
-            objChannel.SetCommTypes();
+            string strDLLPath = ConfOperator.GetPath(ConfigurationManager.AppSettings["DLLPath"]) + strProtocalName + ".dll";
+            Assembly objAssembly = Assembly.LoadFrom(strDLLPath);
+            Type objProtocalType = (from g in objAssembly.GetTypes() where g.Name == strProtocalName select g).First();
+            IProtocal objProtocal = Activator.CreateInstance(objProtocalType) as IProtocal;
+            objChannel.SetProtocal(objProtocal);
             return objChannel;
         }
 
