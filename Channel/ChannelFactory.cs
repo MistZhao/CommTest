@@ -31,6 +31,7 @@ namespace Channel
         #region 私有函数
         private static string GetProtocalName(string strChannelName)
         {
+            DebugTool.WriteLine(strChannelName + "\\" + ConfigurationManager.AppSettings["ChannelConf"]);
             XMLHelper objXMLHelper = XMLHelper.GetInstance(strChannelName + "\\" + ConfigurationManager.AppSettings["ChannelConf"]);
             return objXMLHelper.GetXmlNodeByXpath("//Channel/Protocal").InnerText;
         }

@@ -87,6 +87,10 @@
       <Project>{5433f602-8619-4e7c-a3f2-182c7f5c45db}</Project>
       <Name>InterfaceDll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\Tools.csproj">
+      <Project>{67870c6b-1add-49ad-a376-9b1dc0e28f58}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -7,7 +7,7 @@ namespace InterfaceDll
 {
     public interface IProtocal
     {
-        Queue<string> SendMsg();
+        string SendMsg();
         void ReceiveMsg(string strMsg);
     }
 }

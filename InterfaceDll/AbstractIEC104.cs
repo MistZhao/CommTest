@@ -7,19 +7,28 @@ namespace InterfaceDll
 {
     abstract public class AbstractIEC104:IProtocal
     {
-        private Queue<string> objMsgQueue = new Queue<string>();
+        protected Queue<string> objMsgQueue = new Queue<string>();
 
         public AbstractIEC104()
         {
+            objMsgQueue.Clear();
         }
 
-        public virtual Queue<string> SendMsg()
+        public virtual string SendMsg()
         {
-            return objMsgQueue;
+            if (objMsgQueue.Count > 0)
+            {
+                return objMsgQueue.Dequeue();
+            }
+            else
+            {
+                return "";
+            }
         }
 
         public virtual void ReceiveMsg(string strMsg)
         {
+            System.Threading.Thread.Sleep(1000);
             objMsgQueue.Enqueue(strMsg);
         }
     }

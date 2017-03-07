@@ -44,7 +44,7 @@ namespace Channel
         #region 变量
         private string m_strChannelPath;
         private int m_nPortNum;
-        private List<ICommType> m_objCommTypes;
+        private List<ICommType> m_objCommTypes = new List<ICommType>();
         private IProtocal m_objProtocal;
         #endregion
     }

@@ -9,9 +9,5 @@ namespace DataSource
 {
     public class DataSource:AbstractDataSource
     {
-        public override Queue<string> SendMsg()
-        {
-            return base.SendMsg();
-        }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Channel;
 using InterfaceDll;
+using Tools;
 
 namespace hrcomm
 {
@@ -18,8 +19,11 @@ namespace hrcomm
         static void Main(string[] args)
         {
             ConfOperator.SetConfPath();
-            string strChannelPath = ConfOperator.GetPath(ConfigurationManager.AppSettings["ChannelPath"]);
-            foreach(string s in Directory.GetFiles(strChannelPath,"*.conf"))
+            string strConfPath = ConfOperator.GetConfPath();
+            Configuration config = ConfigurationManager.OpenExeConfiguration(strConfPath);
+            string strChannelsPath = ConfOperator.GetPath(config.AppSettings["ChannelPath"]);
+            DebugTool.WriteLine(strChannelsPath);
+            foreach (string s in Directory.GetDirectories(strChannelsPath, "*.conf"))
             {
                 BackgroundWorker bgwChannel = new BackgroundWorker();
                 bgwChannel.DoWork += bgwChannel_DoWork;
@@ -31,16 +35,24 @@ namespace hrcomm
 
         static void bgwChannel_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Channel.Channel objChannel = (Channel.Channel)e.Result;
-            IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
-
+            //Channel.Channel objChannel = (Channel.Channel)e.Result;
+            //IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
+            //Console.WriteLine(objChannelProtocal.SendMsg());
         }
 
         static void bgwChannel_DoWork(object sender, DoWorkEventArgs e)
         {
-            string strChannelPath = (string)e.Argument;
-            Channel.Channel objChannel = ChannelFactory.CreateChannel(strChannelPath);
-            e.Result = objChannel;
+            try
+            {
+                string strChannelPath = (string)e.Argument;
+                DebugTool.WriteLine(strChannelPath);
+                Channel.Channel objChannel = ChannelFactory.CreateChannel(strChannelPath);
+                e.Result = objChannel;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + Environment.NewLine + ex.StackTrace);
+            }
         }
     }
 }

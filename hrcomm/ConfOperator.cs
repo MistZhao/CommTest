@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,7 +13,6 @@ namespace hrcomm
 
         public static string GetConfPath()
         {
-
             return m_strConfPath;
         }
 
@@ -22,7 +22,7 @@ namespace hrcomm
             string strConfPath = Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.LastIndexOf('\\')) + "\\" + "PrivateConf" +
                  strExePath.Substring(strExePath.LastIndexOf('\\')) + ".config";
             m_strConfPath = strConfPath;
-            AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", strConfPath);
+            //AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", strConfPath);
         }
 
         public static string GetPath(string strPathConf)
