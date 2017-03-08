@@ -5,6 +5,9 @@ using System.Text;
 
 namespace InterfaceDll
 {
+    /// <summary>
+    /// 所有数据源，接口基本一样
+    /// </summary>
     abstract public class AbstractDataSource:IProtocal
     {
         public AbstractDataSource()

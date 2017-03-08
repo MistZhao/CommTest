@@ -11,12 +11,22 @@ namespace Tools
     public class ConfOperator
     {
         #region 接口函数
+        /// <summary>
+        /// 获取程序所在的当前文件夹的同级别指定名称的目录路径
+        /// </summary>
+        /// <param name="strPathConf"></param>
+        /// <returns></returns>
         public static string GetPath(string strPathConf)
         {
             string strPath = Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.LastIndexOf('\\')) + "\\" + strPathConf;
             return strPath;
         }
 
+        /// <summary>
+        /// 设置配置文件与程序的映射，并返回配置对象
+        /// </summary>
+        /// <param name="strAssemblyName"></param>
+        /// <returns></returns>
         public static Configuration GetConfig(string strAssemblyName)
         {
             SetConfPath(strAssemblyName);
@@ -32,6 +42,10 @@ namespace Tools
         #endregion
 
         #region 私有函数
+        /// <summary>
+        /// 设置配置路径
+        /// </summary>
+        /// <param name="strAssemblyName"></param>
         private static void SetConfPath(string strAssemblyName)
         {
             string strConfPath = Environment.CurrentDirectory.Substring(0, Environment.CurrentDirectory.LastIndexOf('\\')) + "\\" + "PrivateConf" +

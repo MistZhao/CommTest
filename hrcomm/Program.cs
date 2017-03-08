@@ -19,9 +19,12 @@ namespace hrcomm
     {
         static void Main(string[] args)
         {
+            // 因为GetExecutingAssembly获取的当前函数执行的exe/dll的程序名，所以不能放到工具类中，不然获得的永远是工具类的名称
             string strAssemblyName = Assembly.GetExecutingAssembly().Location.Substring(Assembly.GetExecutingAssembly().Location.LastIndexOf("\\"));
-            Configuration config = ConfOperator.GetConfig(strAssemblyName);
+            Configuration config = ConfOperator.GetConfig(strAssemblyName); // 设置了该程序(exe/dll)的配置文件路径
+
             string strChannelsPath = ConfOperator.GetPath(config.AppSettings.Settings["ChannelPath"].Value);
+            // 遍历指定文件夹下的通道文件夹，必须以.conf结尾
             foreach (string s in Directory.GetDirectories(strChannelsPath, "*.conf"))
             {
                 BackgroundWorker bgwChannel = new BackgroundWorker();
