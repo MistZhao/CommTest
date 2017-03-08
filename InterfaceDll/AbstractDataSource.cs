@@ -10,17 +10,32 @@ namespace InterfaceDll
     /// </summary>
     abstract public class AbstractDataSource:IProtocal
     {
+        public event SendMsgEventHandler SendMsgEvent;
+
+        protected Queue<string> objMsgQueue = new Queue<string>();
+
         public AbstractDataSource()
         {
+            objMsgQueue.Clear();
         }
 
 
-        public virtual string SendMsg()
+        public virtual void SendMsg()
         {
-            return "产生遥信遥测"; 
+            if (SendMsgEvent != null && objMsgQueue.Count > 0)
+            {
+                SendMsgEventArgs e = new SendMsgEventArgs(objMsgQueue.Dequeue());
+                SendMsgEvent(this, e);
+            }
         }
+
         public virtual void ReceiveMsg(string strMsg)
         {
+        }
+
+        private void CreateYX()
+        {
+
         }
     }
 }

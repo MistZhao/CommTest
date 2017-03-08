@@ -10,6 +10,8 @@ namespace InterfaceDll
     /// </summary>
     abstract public class AbstractIEC104:IProtocal
     {
+        public event SendMsgEventHandler SendMsgEvent;
+
         protected Queue<string> objMsgQueue = new Queue<string>();
 
         public AbstractIEC104()
@@ -17,15 +19,12 @@ namespace InterfaceDll
             objMsgQueue.Clear();
         }
 
-        public virtual string SendMsg()
+        public virtual void SendMsg()
         {
-            if (objMsgQueue.Count > 0)
+            if(SendMsgEvent!=null&&objMsgQueue.Count>0)
             {
-                return objMsgQueue.Dequeue();
-            }
-            else
-            {
-                return "";
+                SendMsgEventArgs e=new SendMsgEventArgs(objMsgQueue.Dequeue());
+                SendMsgEvent(this, e);
             }
         }
 
@@ -33,6 +32,13 @@ namespace InterfaceDll
         {
             System.Threading.Thread.Sleep(1000);
             objMsgQueue.Enqueue(strMsg);
+            SendMsg();
+        }
+        
+        private void CreateFR()
+        {
+            System.Threading.Thread.Sleep(1500);
+            objMsgQueue.Enqueue("AbIEC104产生故障报告");
         }
     }
 }

@@ -10,14 +10,12 @@ namespace upPlugin104
     class upPlugin104 : AbstractIEC104
     {
         public upPlugin104()
-        {
-            objMsgQueue.Clear();                
+        {              
         }
 
         public override void ReceiveMsg(string strMsg)
         {
             System.Threading.Thread.Sleep(1000);
-            objMsgQueue.Enqueue("upPlugin104    " + strMsg);
         }
     }
 }

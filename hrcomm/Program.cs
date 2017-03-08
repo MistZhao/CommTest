@@ -39,7 +39,6 @@ namespace hrcomm
         {
             Channel.Channel objChannel = (Channel.Channel)e.Result;
             IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
-            Console.WriteLine(objChannelProtocal.SendMsg());
         }
 
         static void bgwChannel_DoWork(object sender, DoWorkEventArgs e)
