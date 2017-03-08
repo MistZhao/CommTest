@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,11 +19,9 @@ namespace hrcomm
     {
         static void Main(string[] args)
         {
-            ConfOperator.SetConfPath();
-            string strConfPath = ConfOperator.GetConfPath();
-            Configuration config = ConfigurationManager.OpenExeConfiguration(strConfPath);
-            string strChannelsPath = ConfOperator.GetPath(config.AppSettings["ChannelPath"]);
-            DebugTool.WriteLine(strChannelsPath);
+            string strAssemblyName = Assembly.GetExecutingAssembly().Location.Substring(Assembly.GetExecutingAssembly().Location.LastIndexOf("\\"));
+            Configuration config = ConfOperator.GetConfig(strAssemblyName);
+            string strChannelsPath = ConfOperator.GetPath(config.AppSettings.Settings["ChannelPath"].Value);
             foreach (string s in Directory.GetDirectories(strChannelsPath, "*.conf"))
             {
                 BackgroundWorker bgwChannel = new BackgroundWorker();
@@ -35,9 +34,9 @@ namespace hrcomm
 
         static void bgwChannel_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //Channel.Channel objChannel = (Channel.Channel)e.Result;
-            //IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
-            //Console.WriteLine(objChannelProtocal.SendMsg());
+            Channel.Channel objChannel = (Channel.Channel)e.Result;
+            IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
+            Console.WriteLine(objChannelProtocal.SendMsg());
         }
 
         static void bgwChannel_DoWork(object sender, DoWorkEventArgs e)
@@ -45,7 +44,6 @@ namespace hrcomm
             try
             {
                 string strChannelPath = (string)e.Argument;
-                DebugTool.WriteLine(strChannelPath);
                 Channel.Channel objChannel = ChannelFactory.CreateChannel(strChannelPath);
                 e.Result = objChannel;
             }

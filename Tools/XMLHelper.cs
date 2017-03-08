@@ -14,8 +14,6 @@ namespace Tools
         private XmlNode xmlnode;
         private XmlElement xmlelem;
         private string m_strFileName = "";
-
-        private static readonly object m_objLocker = new object();
         #endregion
 
         private XMLHelper() { }
@@ -26,6 +24,7 @@ namespace Tools
         }
         public static XMLHelper GetInstance(string strFileName)
         {
+            Singleton<XMLHelper>.types[0] = typeof(string);
             return Singleton<XMLHelper>.GetInstance(new object[]{strFileName});
         }
 

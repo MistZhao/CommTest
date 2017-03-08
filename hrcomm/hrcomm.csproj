@@ -69,7 +69,6 @@
     <Compile Include="CommType_PosTCPFactory.cs" />
     <Compile Include="CommType_UDP.cs" />
     <Compile Include="CommType_UDPFactory.cs" />
-    <Compile Include="ConfOperator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

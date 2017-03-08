@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Channel.cs" />
     <Compile Include="ChannelFactory.cs" />
-    <Compile Include="ConfOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
