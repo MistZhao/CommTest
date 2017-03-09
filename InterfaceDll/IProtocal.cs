@@ -26,7 +26,14 @@ namespace InterfaceDll
     {
         event SendMsgEventHandler SendMsgEvent;
 
-        void SendMsg();
+        /// <summary>
+        /// 开始创建Timer，创建数据并传出数据
+        /// </summary>
+        void StartCreateData();
+        /// <summary>
+        /// 接收数据，处理后传出
+        /// </summary>
+        /// <param name="strMsg"></param>
         void ReceiveMsg(string strMsg);
     }
 }

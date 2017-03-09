@@ -39,6 +39,13 @@ namespace hrcomm
         {
             Channel.Channel objChannel = (Channel.Channel)e.Result;
             IProtocal objChannelProtocal = (IProtocal)objChannel.GetProtocal();
+            objChannelProtocal.SendMsgEvent += objChannelProtocal_SendMsgEvent;
+            objChannelProtocal.StartCreateData();
+        }
+
+        static void objChannelProtocal_SendMsgEvent(IProtocal sender, SendMsgEventArgs e)
+        {
+            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff    ") + e.StrMsg);
         }
 
         static void bgwChannel_DoWork(object sender, DoWorkEventArgs e)
