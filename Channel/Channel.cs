@@ -36,6 +36,15 @@ namespace Channel
         {
             return m_objCommTypes;
         }
+
+        /// <summary>
+        /// 配置完成，开始启用
+        /// </summary>
+        public void EnableChannel()
+        {
+
+            m_objProtocal.StartCreateData();
+        }
         #endregion
 
         #region 私有函数

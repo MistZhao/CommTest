@@ -66,7 +66,7 @@ namespace InterfaceDll
         {
             YCCreator();
             SendMsg();
-        }
+        }                                                                                                                                                           
         protected virtual void YCCreator()
         {
             objMsgQueue.Enqueue("YC01=0.155,YX02=10.101");
