@@ -41,6 +41,7 @@
     <Compile Include="AbstractDataSource.cs" />
     <Compile Include="AbstractIEC101.cs" />
     <Compile Include="AbstractIEC104.cs" />
+    <Compile Include="CommTypeEnum.cs" />
     <Compile Include="ICommType.cs" />
     <Compile Include="ICommTypeFactory.cs" />
     <Compile Include="IProtocal.cs" />

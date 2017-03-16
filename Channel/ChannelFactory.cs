@@ -22,14 +22,16 @@ namespace Channel
             Configuration config = ConfOperator.GetConfig(strAssemblyName);
 
             Channel objChannel = new Channel(strChannelName);
+
             string strProtocalName = GetProtocalName(config,strChannelName);
             // 根据配置文件中的协议名称动态加载同名的dll，利用反射生成同名的协议类
             string strDLLPath = ConfOperator.GetPath(config.AppSettings.Settings["DLLPath"].Value) + "\\" +strProtocalName + ".dll";
             Assembly objAssembly = Assembly.LoadFrom(strDLLPath);
             Type objProtocalType = (from g in objAssembly.GetTypes() where g.Name == strProtocalName select g).First();
             IProtocal objProtocal = Activator.CreateInstance(objProtocalType) as IProtocal;
-
             objChannel.SetProtocal(objProtocal);
+
+
             return objChannel;
         }
 

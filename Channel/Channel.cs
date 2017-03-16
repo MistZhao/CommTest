@@ -42,7 +42,6 @@ namespace Channel
         /// </summary>
         public void EnableChannel()
         {
-
             m_objProtocal.StartCreateData();
         }
         #endregion
